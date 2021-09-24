@@ -8,22 +8,31 @@ html, body {
 }
 
 body {
-  background-color: aliceblue;
+  background-color: whitesmoke;
 }
 
 .main-container {
   margin: 2.5vh 0 2.5vh;
 }
 
-main {
-}
-
 .img-wrapper {
+  position: relative;
   max-width: 720px;
 }
 
+.img-wrapper .img-empty-holder {
+  min-height: 352px;
+}
+
 .img-wrapper img {
+  position: absolute;
   width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.alpaca-change-nav a, footer a {
+  text-decoration: none;
 }
 
 .alpaca-change-div {
@@ -41,6 +50,11 @@ footer {
   margin-top: 1vh;
 }
 
-footer button{
+footer a{
+  border: .5px solid lightgray;
+  width: 100%;
   margin: 0 1rem;
+  padding: .5rem 1rem;
+  border-radius: 5px;
+  background-color: white;
 }
