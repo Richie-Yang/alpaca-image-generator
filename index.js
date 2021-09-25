@@ -78,22 +78,8 @@ optionsSelect.addEventListener('click', function onOptionsSelectClicked(event) {
   }
 })
 
-categoriesSelect.addEventListener('touchstart', function onCategoriesSelectClicked(event) {
-  if (event.target.tagName === 'OPTION') {
-    renderOptions(event.target.value)
-  }
-})
-
-optionsSelect.addEventListener('touchstart', function onOptionsSelectClicked(event) {
-  if (event.target.tagName === 'OPTION') {
-    const category = event.target.dataset.id.toLowerCase()
-    const option = event.target.value.toLowerCase()
-    modifyAlpacaStyle(category, option)
-  }
-})
-
 body.addEventListener('click', function(event) {
-  console.log(event.pointerType)
+  console.log(event)
 })
 ///////////////Event Listener Group Ends Here///////////////
 

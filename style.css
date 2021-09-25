@@ -40,9 +40,9 @@ body {
   margin: 1.5vh 0 1.5vh;
 }
 
-#alpaca-categories-select, #alpaca-options-select {
+/* #alpaca-categories-select, #alpaca-options-select {
   width: 100%;
-}
+} */
 
 footer a{
   border: .5px solid lightgray;
