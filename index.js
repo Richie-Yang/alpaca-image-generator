@@ -1,7 +1,6 @@
 const categoriesSelect = document.querySelector('#alpaca-categories-select')
 const optionsSelect = document.querySelector('#alpaca-options-select')
 const changeDiv = document.querySelectorAll('.alpaca-change-div')
-const body = document.querySelector('body')
 
 const alpacaDict = {
   Hair: ['Default', 'Bang', 'Curls', 'Elegant', 'Fancy', 'Quiff', 'Short'],
@@ -67,19 +66,29 @@ function modifyAlpacaStyle(category, option) {
 categoriesSelect.addEventListener('click', function onCategoriesSelectClicked(event) {
   if (event.target.tagName === 'OPTION') {
     renderOptions(event.target.value)
+
+    optionsSelect.addEventListener('click', function onOptionsSelectClicked(event) {
+      if (event.target.tagName === 'OPTION') {
+        const category = event.target.dataset.id.toLowerCase()
+        const option = event.target.value.toLowerCase()
+        modifyAlpacaStyle(category, option)
+      }
+    })
   }
 })
 
-optionsSelect.addEventListener('click', function onOptionsSelectClicked(event) {
+categoriesSelect.addEventListener('touchstart', function onCategoriesSelectClicked(event) {
   if (event.target.tagName === 'OPTION') {
-    const category = event.target.dataset.id.toLowerCase()
-    const option = event.target.value.toLowerCase()
-    modifyAlpacaStyle(category, option)
-  }
-})
+    renderOptions(event.target.value)
 
-body.addEventListener('click', function(event) {
-  console.log(event)
+    optionsSelect.addEventListener('touchstart', function onOptionsSelectClicked(event) {
+      if (event.target.tagName === 'OPTION') {
+        const category = event.target.dataset.id.toLowerCase()
+        const option = event.target.value.toLowerCase()
+        modifyAlpacaStyle(category, option)
+      }
+    })
+  }
 })
 ///////////////Event Listener Group Ends Here///////////////
 
