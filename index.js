@@ -63,19 +63,13 @@ function modifyAlpacaStyle(category, option) {
 
 
 ///////////////Event Listener Group Starts Here///////////////
-categoriesSelect.addEventListener('click', function onCategoriesSelectClicked(event) {
+categoriesSelect.addEventListener('touchstart', function onCategoriesSelectClicked(event) {
   if (event.target.tagName === 'OPTION') {
     renderOptions(event.target.value)
   }
 })
 
-categoriesSelect.addEventListener('touch', function onCategoriesSelectClicked(event) {
-  if (event.target.tagName === 'OPTION') {
-    renderOptions(event.target.value)
-  }
-})
-
-optionsSelect.addEventListener('click', function onOptionsSelectClicked(event) {
+optionsSelect.addEventListener('touchstart', function onOptionsSelectClicked(event) {
   if (event.target.tagName === 'OPTION') {
     const category = event.target.dataset.id.toLowerCase()
     const option = event.target.value.toLowerCase()
