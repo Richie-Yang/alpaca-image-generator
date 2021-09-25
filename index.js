@@ -151,9 +151,4 @@ footerSection.addEventListener('click', function onFooterSectionClicked(event) {
 })
 ///////////////Event Listener Group Ends Here///////////////
 
-
 renderCategories()
-if (document.readyState === "complete") {
-  randomizeAlpaca(alpacaDict)
-}
-
