@@ -1,7 +1,7 @@
-const categoriesInput = document.querySelector('#alpaca-categories-input')
 const categoriesSelect = document.querySelector('#alpaca-categories-select')
+const categoriesLabel = document.querySelector('#alpaca-categories-label')
 const optionsSelect = document.querySelector('#alpaca-options-select')
-const optionsInput = document.querySelector('#alpaca-options-input')
+const optionsLabel = document.querySelector('#alpaca-options-label')
 // const changeDiv = document.querySelectorAll('.alpaca-change-div')
 
 const alpacaDict = {
@@ -65,30 +65,16 @@ function modifyAlpacaStyle(category, option) {
 
 
 ///////////////Event Listener Group Starts Here///////////////
-// categoriesSelect.addEventListener('click', function onCategoriesSelectClicked(event) {
-//   if (event.target.tagName === 'OPTION') {
-//     renderOptions(event.target.value)
-//   }
-// })
-
-// optionsSelect.addEventListener('click', function onOptionsSelectClicked(event) {
-//   if (event.target.tagName === 'OPTION') {
-//     const category = event.target.dataset.id.toLowerCase()
-//     const option = event.target.value.toLowerCase()
-//     modifyAlpacaStyle(category, option)
-//   }
-// })
-
 categoriesSelect.addEventListener('click', function onCategoriesSelectClicked(event) {
   if (event.target.tagName === 'A') {
-    categoriesInput.value = event.target.dataset.id
+    categoriesLabel.innerHTML = event.target.dataset.id
     renderOptions(event.target.dataset.id)
   }
 })
 
 optionsSelect.addEventListener('click', function onOptionsSelectClicked(event) {
   if (event.target.tagName === 'A') {
-    optionsInput.value = event.target.dataset.option
+    optionsLabel.innerHTML = event.target.dataset.option
     const category = event.target.dataset.category.toLowerCase()
     const option = event.target.dataset.option.toLowerCase()
     modifyAlpacaStyle(category, option)
