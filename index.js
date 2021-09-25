@@ -153,7 +153,7 @@ footerSection.addEventListener('click', function onFooterSectionClicked(event) {
 
 
 renderCategories()
-setTimeout(() => {
+if (document.readyState === "complete") {
   randomizeAlpaca(alpacaDict)
-}, 250);
+}
 
