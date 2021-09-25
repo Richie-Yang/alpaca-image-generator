@@ -58,8 +58,22 @@ function renderOptions(id) {
 }
 
 function modifyAlpacaStyle(category, option) {
-  const styleTarget = document.querySelector(`#alpaca-${category}`)
-  styleTarget.src = `./external/alpaca-generator-assets/alpaca/${category}/${option}.png`
+  const targetName = `alpaca-${category}`
+  const targetObject = document.querySelector(`#${targetName}`)
+
+  if (targetName === 'alpaca-backgrounds') {
+    const background1 = document.querySelector(`#alpaca-backgrounds-1`)
+    const background2 = document.querySelector(`#alpaca-backgrounds-2`)
+    background2.style.opacity = 1
+    background2.src = background1.src
+
+    setTimeout(function() {
+      background1.src = `./external/alpaca-generator-assets/alpaca/${category}/${option}.png`
+      background2.style.opacity = 0
+    }, 250)
+  } else {
+    targetObject.src = `./external/alpaca-generator-assets/alpaca/${category}/${option}.png`
+  }
 }
 //////////////////Function Group Ends Here//////////////////
 
@@ -85,31 +99,3 @@ optionsSelect.addEventListener('click', function onOptionsSelectClicked(event) {
 
 renderCategories()
 renderOptions('Hair')
-
-
-// setInterval(function () {
-//   // console.log(window.innerWidth)
-//   // console.log(changeDiv)
-//   switch (true) {
-//     case (window.innerWidth < 768):
-//       changeDiv.forEach(divItem => {
-//         divItem.lastElementChild.size = '4'
-//       })
-//       break
-//     case (window.innerWidth < 992):
-//       changeDiv.forEach(divItem => {
-//         divItem.lastElementChild.size = '5'
-//       })
-//       break
-//     case (window.innerWidth < 1200):
-//       changeDiv.forEach(divItem => {
-//         divItem.lastElementChild.size = '7'
-//       })
-//       break
-//     case (window.innerWidth < 1400):
-//       changeDiv.forEach(divItem => {
-//         divItem.lastElementChild.size = '9'
-//       })
-//       break
-//   }
-// }, 100)

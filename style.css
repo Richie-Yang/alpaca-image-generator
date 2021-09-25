@@ -26,7 +26,7 @@ body {
   position: relative;
 }
 
-.alpaca-style-image {
+#alpaca-backgrounds-2, .alpaca-style-image {
   /* outline: 1px solid tomato; */
   position: absolute;
   max-width: 100%;
@@ -34,6 +34,14 @@ body {
   padding: inherit;
   top: 0;
   left: 0;
+}
+
+#alpaca-backgrounds-2 {
+  transition: opacity .5s;
+}
+
+.dropdown-toggle {
+  width: 95%;
 }
 
 footer a{
@@ -44,6 +52,7 @@ footer a{
   border-radius: 5px;
   background-color: white;
   text-decoration: none;
+  box-shadow: -3px 8px 2px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
 /* Medium devices (tablets, 768px and up) */
