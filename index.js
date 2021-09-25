@@ -63,28 +63,25 @@ function modifyAlpacaStyle(category, option) {
 
 
 ///////////////Event Listener Group Starts Here///////////////
-categoriesSelect.addEventListener('click', function onOptionsSelectClicked(event) {
-  // if (event.target.tagName === 'OPTION') {
-  //   renderOptions(event.target.value)
-  // }
-  renderOptions(event.target.value)
+categoriesSelect.addEventListener('click', function onCategoriesSelectClicked(event) {
+  if (event.target.tagName === 'OPTION') {
+    renderOptions(event.target.value)
+  }
 })
 
 optionsSelect.addEventListener('click', function onOptionsSelectClicked(event) {
-  // if (event.target.tagName === 'OPTION') {
-  //   const category = event.target.dataset.id.toLowerCase()
-  //   const option = event.target.value.toLowerCase()
-  //   modifyAlpacaStyle(category, option)
-  // }
-  const category = event.target.dataset.id.toLowerCase()
-  const option = event.target.value.toLowerCase()
-  modifyAlpacaStyle(category, option)
+  if (event.target.tagName === 'OPTION') {
+    const category = event.target.dataset.id.toLowerCase()
+    const option = event.target.value.toLowerCase()
+    modifyAlpacaStyle(category, option)
+  }
 })
 ///////////////Event Listener Group Ends Here///////////////
 
 
 renderCategories()
 renderOptions('Hair')
+
 
 setInterval(function () {
   // console.log(window.innerWidth)
