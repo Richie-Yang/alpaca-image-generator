@@ -66,14 +66,14 @@ function modifyAlpacaStyle(category, option) {
     const background2 = document.querySelector(`#alpaca-backgrounds-2`)
 
     background2.style.transition = 'unset'
-    background2.style.opacity = 1
+    background2.style.opacity = '1'
     background2.src = background1.src
 
     const bgSwitchingTimer = setInterval(() => {
-      if (background2.style.opacity = 1) {
+      if (background2.style.opacity === '1') {
         background1.src = `./external/alpaca-generator-assets/alpaca/${category}/${option}.png`
         background2.style.transition = 'opacity 1s'
-        background2.style.opacity = 0
+        background2.style.opacity = '0'
         clearInterval(bgSwitchingTimer)
       }
     }, 50);
