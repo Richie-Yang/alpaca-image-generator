@@ -1,3 +1,4 @@
+//Declare some variables for global scope
 const categoriesSelect = document.querySelector('#alpaca-categories-select')
 const categoriesLabel = document.querySelector('#alpaca-categories-label')
 const optionsSelect = document.querySelector('#alpaca-options-select')
@@ -151,4 +152,7 @@ footerSection.addEventListener('click', function onFooterSectionClicked(event) {
 })
 ///////////////Event Listener Group Ends Here///////////////
 
+
+//Initialize the first view
 renderCategories()
+randomizeAlpaca(alpacaDict)
