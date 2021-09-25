@@ -2,7 +2,8 @@ const categoriesSelect = document.querySelector('#alpaca-categories-select')
 const categoriesLabel = document.querySelector('#alpaca-categories-label')
 const optionsSelect = document.querySelector('#alpaca-options-select')
 const optionsLabel = document.querySelector('#alpaca-options-label')
-// const changeDiv = document.querySelectorAll('.alpaca-change-div')
+const footerSection = document.querySelector('#footer-section')
+
 
 const alpacaDict = {
   Hair: ['Default', 'Bang', 'Curls', 'Elegant', 'Fancy', 'Quiff', 'Short'],
@@ -83,10 +84,36 @@ function modifyAlpacaStyle(category, option) {
   }
 }
 
-function randomizeAlpaca() {
-  for (let category in alpacaDict) {
-    const randomIndex = Math.floor(Math.random() * category.length) + 1
+function randomizeAlpaca(data) {
+  for (let category in data) {
+    const targetName = `alpaca-${category.toLowerCase()}`
     
+    if (category !== 'Backgrounds') {
+      const targetObject = document.querySelector(`#${targetName}`)
+      const randomIndex = Math.floor(Math.random() * alpacaDict[category].length)
+      const option = alpacaDict[category][randomIndex]
+      targetObject.src = `
+        ./external/alpaca-generator-assets/alpaca/${category}/${option}.png
+      `
+    } else {
+      const bgColorNameArray = Object.keys(alpacaDict[category])
+      const randomColorIndex = Math.floor(Math.random() * bgColorNameArray.length)
+      const randomColorName = bgColorNameArray[randomColorIndex]
+      
+      const bgColorNumberArray = alpacaDict[category][randomColorName]
+      const randomNumberIndex = Math.floor(Math.random() * bgColorNumberArray.length)
+      const randomNumberValue = bgColorNumberArray[randomNumberIndex]
+
+      const background1 = document.querySelector(`#${targetName}-1`)
+      const background2 = document.querySelector(`#${targetName}-2`)
+      
+      background1.src = `
+        ./external/alpaca-generator-assets/alpaca/${category}/${randomColorName}${randomNumberValue}.png
+      `
+      background2.src = `
+        ./external/alpaca-generator-assets/alpaca/${category}/${randomColorName}${randomNumberValue}.png
+      `
+    }
   }
 }
 //////////////////Function Group Ends Here//////////////////
@@ -109,8 +136,21 @@ optionsSelect.addEventListener('click', function onOptionsSelectClicked(event) {
     modifyAlpacaStyle(category, option)
   }
 })
+
+footerSection.addEventListener('click', function onFooterSectionClicked(event) {
+  event.preventDefault()
+  switch (event.target.dataset.id) {
+    case 'random':
+      randomizeAlpaca(alpacaDict)
+      categoriesLabel.innerHTML = 'First, Select the Category'
+      optionsLabel.innerHTML = 'Then, Select the Option'
+      break
+    case 'download':
+      break
+  }
+})
 ///////////////Event Listener Group Ends Here///////////////
 
 
 renderCategories()
-renderOptions('Hair')
+randomizeAlpaca(alpacaDict)

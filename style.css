@@ -50,9 +50,20 @@ footer a{
   padding: .5rem 1rem;
   margin: 5px auto;
   border-radius: 5px;
-  background-color: white;
+  color: whitesmoke;
+  background-color: lightsteelblue;
   text-decoration: none;
   box-shadow: -3px 8px 2px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  transition: background-color .3s, color .3s, box-shadow .1s;
+}
+
+footer a:hover {
+  color: lightsteelblue;
+  background-color: whitesmoke;
+}
+
+footer a:active {
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
 /* Medium devices (tablets, 768px and up) */
