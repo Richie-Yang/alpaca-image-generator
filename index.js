@@ -69,10 +69,10 @@ function modifyAlpacaStyle(category, option) {
     background2.src = background1.src
 
     setTimeout(function() {
-      background2.style.transition = '1s'
+      background2.style.transition = 'opacity 1s'
       background1.src = `./external/alpaca-generator-assets/alpaca/${category}/${option}.png`
       background2.style.opacity = 0
-    }, 250)
+    }, 350)
   } else {
     targetObject.src = `./external/alpaca-generator-assets/alpaca/${category}/${option}.png`
   }
