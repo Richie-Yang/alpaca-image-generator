@@ -1,6 +1,9 @@
 //Declare some variables for global scope
+const imageWrapper = document.querySelectorAll('.image-wrapper')[0]
+const categoriesList = document.querySelector('#alpaca-categories-ul')
 const categoriesSelect = document.querySelector('#alpaca-categories-select')
 const categoriesLabel = document.querySelector('#alpaca-categories-label')
+const optionsList = document.querySelector('#alpaca-options-ul')
 const optionsSelect = document.querySelector('#alpaca-options-select')
 const optionsLabel = document.querySelector('#alpaca-options-label')
 const footerSection = document.querySelector('#footer-section')
@@ -27,36 +30,54 @@ const alpacaDict = {
 
 //////////////////Function Group Starts Here//////////////////
 function renderCategories() {
-  let rawHTML = ''
+  let rawListHTML = ''
+  let rawSelectHTML = ''
+
   for (let dictItem in alpacaDict) {
-    rawHTML += `
+    rawListHTML += `
       <li><a class="dropdown-item" href="#" data-id="${dictItem}">${dictItem}</a></li>
     `
+    rawSelectHTML += `
+      <option data-id="${dictItem}">${dictItem}</option>
+    `
   }
-  categoriesSelect.innerHTML = rawHTML
+
+  categoriesList.innerHTML = rawListHTML
+  categoriesSelect.innerHTML = rawSelectHTML
 }
 
 function renderOptions(id) {
   const category = alpacaDict[id]
-  let rawHTML = ''
+  let rawListHTML = ''
+  let rawSelectHTML = ''
   
   if (category['Blue']) {
     Object.keys(category).forEach(key => {
-      category[key].map(value => {
-        rawHTML += `
+      category[key].forEach(value => {
+        rawListHTML += `
           <li><a class="dropdown-item" href="#" data-category="${id}" data-option="${key}${value}">${key}-${value}</a></li>
+        `
+        rawSelectHTML += `
+          <option data-category="${id}" data-option="${key}${value}">${key}-${value}</option>
         `
       })
     })
   } else {
-    rawHTML = category.map(categoryItem => {
+    rawListHTML = category.map(categoryItem => {
       return `
       <li><a class="dropdown-item" href="#" data-category="${id}" data-option="${categoryItem}">${categoryItem}</a></li>
       `
     }).join('')
+
+    rawSelectHTML = category.map(categoryItem => {
+      return `
+      <option data-category="${id}" data-option="${categoryItem}">${categoryItem}</option>
+      `
+    }).join('')
   }
 
-  optionsSelect.innerHTML = rawHTML
+  optionsList.innerHTML = rawListHTML
+  optionsSelect.innerHTML = rawSelectHTML
 }
 
 function modifyAlpacaStyle(category, option) {
@@ -121,7 +142,7 @@ function randomizeAlpaca(data) {
 
 
 ///////////////Event Listener Group Starts Here///////////////
-categoriesSelect.addEventListener('click', function onCategoriesSelectClicked(event) {
+categoriesList.addEventListener('click', function onCategoriesListClicked(event) {
   if (event.target.tagName === 'A') {
     categoriesLabel.innerHTML = event.target.dataset.id
     renderOptions(event.target.dataset.id)
@@ -129,8 +150,25 @@ categoriesSelect.addEventListener('click', function onCategoriesSelectClicked(ev
   }
 })
 
-optionsSelect.addEventListener('click', function onOptionsSelectClicked(event) {
+categoriesSelect.addEventListener('click', function onCategoriesSelectClicked(event) {
+  if (event.target.tagName === 'OPTION') {
+    categoriesLabel.innerHTML = event.target.dataset.id
+    renderOptions(event.target.dataset.id)
+    optionsLabel.innerHTML = 'Then, Select the Option'
+  }
+})
+
+optionsList.addEventListener('click', function onOptionsListClicked(event) {
   if (event.target.tagName === 'A') {
+    optionsLabel.innerHTML = event.target.dataset.option
+    const category = event.target.dataset.category.toLowerCase()
+    const option = event.target.dataset.option.toLowerCase()
+    modifyAlpacaStyle(category, option)
+  }
+})
+
+optionsSelect.addEventListener('click', function onOptionsSelectClicked(event) {
+  if (event.target.tagName === 'OPTION') {
     optionsLabel.innerHTML = event.target.dataset.option
     const category = event.target.dataset.category.toLowerCase()
     const option = event.target.dataset.option.toLowerCase()
@@ -147,6 +185,16 @@ footerSection.addEventListener('click', function onFooterSectionClicked(event) {
       optionsLabel.innerHTML = 'Then, Select the Option'
       break
     case 'download':
+      html2canvas(imageWrapper).then(canvas => {
+        const tempPaddingValue = imageWrapper.style.padding
+        imageWrapper.style.padding = 0
+        const base64image = canvas.toDataURL("image/png")
+        const download = document.createElement('a')
+        download.href = base64image
+        download.download = 'alpaca.png'
+        download.click()
+        imageWrapper.style.padding = tempPaddingValue
+      })
       break
   }
 })
