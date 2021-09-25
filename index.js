@@ -1,6 +1,7 @@
 const categoriesSelect = document.querySelector('#alpaca-categories-select')
 const optionsSelect = document.querySelector('#alpaca-options-select')
 const changeDiv = document.querySelectorAll('.alpaca-change-div')
+const body = document.querySelector('body')
 
 const alpacaDict = {
   Hair: ['Default', 'Bang', 'Curls', 'Elegant', 'Fancy', 'Quiff', 'Short'],
@@ -93,6 +94,10 @@ optionsSelect.addEventListener('touchstart', function onOptionsSelectClicked(eve
     const option = event.target.value.toLowerCase()
     modifyAlpacaStyle(category, option)
   }
+})
+
+body.addEventListener('click', function(event) {
+  console.log(event.pointerType)
 })
 ///////////////Event Listener Group Ends Here///////////////
 
