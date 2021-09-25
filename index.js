@@ -64,13 +64,15 @@ function modifyAlpacaStyle(category, option) {
   if (targetName === 'alpaca-backgrounds') {
     const background1 = document.querySelector(`#alpaca-backgrounds-1`)
     const background2 = document.querySelector(`#alpaca-backgrounds-2`)
+    background2.style.transition = 'unset'
     background2.style.opacity = 1
     background2.src = background1.src
 
     setTimeout(function() {
+      background2.style.transition = '1s'
       background1.src = `./external/alpaca-generator-assets/alpaca/${category}/${option}.png`
       background2.style.opacity = 0
-    }, 500)
+    }, 250)
   } else {
     targetObject.src = `./external/alpaca-generator-assets/alpaca/${category}/${option}.png`
   }
