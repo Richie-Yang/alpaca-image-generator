@@ -10,28 +10,31 @@ const categoriesNav = document.querySelector('#alpaca-categories-nav')
 const optionsNav = document.querySelector('#alpaca-options-nav')
 
 const alpacaDict = {
-  hair: ['default', 'bang', 'curls', 'elegant', 'fancy', 'quiff', 'short'],
-  ears: ['default', 'tilt-backward', 'tilt-forward'],
-  eyes: ['default', 'angry', 'naughty', 'panda', 'smart', 'star'],
-  mouth: ['default', 'astonished', 'eating', 'laugh', 'tongue'],
-  neck: ['default', 'bend-backward', 'bend-forward', 'thick'],
-  leg: ['default', 'bubble-tea', 'tilt-backward', 'cookie', 'game-console', 'tilt-forward'],
-  accessories: ['earings', 'flower', 'glasses', 'headphone'],
-  background: {
-    blue: [50, 60, 70],
-    darkblue: [30, 50, 70],
-    green: [50, 60, 70],
-    grey: [40, 60, 80],
-    red: [50, 60, 70],
-    yellow: [50, 60, 70]
+  Hair: ['Default', 'Bang', 'Curls', 'Elegant', 'Fancy', 'Quiff', 'Short'],
+  Ears: ['Default', 'Tilt-backward', 'Tilt-forward'],
+  Eyes: ['Default', 'Angry', 'Naughty', 'Panda', 'Smart', 'Star'],
+  Mouth: ['Default', 'Astonished', 'Eating', 'Laugh', 'Tongue'],
+  Neck: ['Default', 'Bend-backward', 'Bend-forward', 'Thick'],
+  Leg: ['Default', 'Bubble-tea', 'Tilt-backward', 'Cookie', 'Game-console', 'Tilt-forward'],
+  Accessories: ['Earings', 'Flower', 'Glasses', 'Headphone'],
+  Backgrounds: {
+    Blue: [50, 60, 70],
+    Darkblue: [30, 50, 70],
+    Green: [50, 60, 70],
+    Grey: [40, 60, 80],
+    Red: [50, 60, 70],
+    Yellow: [50, 60, 70]
   }
 }
 
 
+//////////////////Function Group Starts Here//////////////////
 function renderCategories() {
   let rawHTML = ''
   for (let dictItem in alpacaDict) {
-    rawHTML += `<a href="" data-id="${dictItem}">${dictItem}</a>`
+    rawHTML += `
+      <option value="${dictItem}">${dictItem}</option>
+    `
   }
   categoriesNav.innerHTML = rawHTML
 }
@@ -40,32 +43,46 @@ function renderOptions(id) {
   const category = alpacaDict[id]
   let rawHTML = ''
   
-  if (category['blue']) {
+  if (category['Blue']) {
     Object.keys(category).forEach(key => {
-      category[key].map(test => rawHTML += `<a href="">${key} ${test}</a>`)
+      category[key].map(test => rawHTML += `<option data-id="${id}" value="${key}${test}">${key}-${test}</option>`)
     })
   } else {
-    rawHTML = category.map(categoryItem => `<a href="" data-category="${id}" data-option="${categoryItem}">${categoryItem}</a>`).join('')
+    rawHTML = category.map(categoryItem => {
+      return `
+      <option data-id="${id}" value="${categoryItem}">${categoryItem}</option>
+      `
+    }).join('')
   }
 
   optionsNav.innerHTML = rawHTML
 }
 
 function modifyAlpacaStyle(category, option) {
+  console.log(category)
   const styleTarget = document.querySelector(`#alpaca-${category}`)
   styleTarget.src = `./external/alpaca-generator-assets/alpaca/${category}/${option}.png`
 }
+//////////////////Function Group Ends Here//////////////////
 
+
+///////////////Event Listener Group Starts Here///////////////
 categoriesNav.addEventListener('click', function onOptionsNavClicked(event) {
-  event.preventDefault()
-  renderOptions(event.target.dataset.id)
+  if (event.target.tagName === 'OPTION') {
+    renderOptions(event.target.value)
+  }
 })
 
 optionsNav.addEventListener('click', function onOptionsNavClicked(event) {
-  event.preventDefault()
-  modifyAlpacaStyle(event.target.dataset.category, event.target.dataset.option)
+  if (event.target.tagName === 'OPTION') {
+    const category = event.target.dataset.id.toLowerCase()
+    const option = event.target.value.toLowerCase()
+    modifyAlpacaStyle(category, option)
+  }
 })
+///////////////Event Listener Group Ends Here///////////////
+
 
 renderCategories()
-renderOptions('hair')
+renderOptions('Hair')
 

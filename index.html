@@ -16,9 +16,9 @@
     </header>
 
     <main class="d-flex flex-column justify-content-around">
-      <section class="img-wrapper">
-        <div class="img-empty-holder"></div>
-        <img id="alpaca-background" src="./external/alpaca-generator-assets/alpaca/backgrounds/blue50.png" alt="">
+      <section class="image-wrapper">
+        <div class="image-empty-holder"></div>
+        <img id="alpaca-backgrounds" src="./external/alpaca-generator-assets/alpaca/backgrounds/blue50.png" alt="">
         <img id="alpaca-ears" src="./external/alpaca-generator-assets/alpaca/ears/default.png" alt="">
         <img id="alpaca-neck" src="./external/alpaca-generator-assets/alpaca/neck/default.png" alt="">
         <img id="alpaca-nose" src="./external/alpaca-generator-assets/alpaca/nose.png" alt="">
@@ -29,21 +29,22 @@
         <img id="alpaca-eyes" src="./external/alpaca-generator-assets/alpaca/eyes/default.png" alt="">
       </section>
 
-      <section>
+      <section class="setting-wrapper">
         <div class="alpaca-change-div">
           <h5>ACCESSORIZE THE ALPACA'S</h5>
-          <nav id="alpaca-categories-nav" class="alpaca-change-nav d-flex flex-wrap justify-content-center">
-          </nav>
+          <select id="alpaca-categories-nav" class="form-select alpaca-change-nav" size="5" aria-label="size 5 select example">
+          </select>
         </div>
 
         <div class="alpaca-change-div">
           <h5>STYLE</h5>
-          <nav id="alpaca-options-nav" class="alpaca-change-nav d-flex flex-wrap justify-content-center">
-          </nav>
+          <select id="alpaca-options-nav" class="form-select alpaca-change-nav" size="5" aria-label="size 5 select example">
+          </select>
         </div>
       </section>
-    </main>
 
+
+    </main>
 
     <footer class="d-flex justify-content-between">
       <a href="">Random</a>
@@ -51,10 +52,8 @@
     </footer>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
-    integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
-    integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
   <script src="./index.js"></script>
 </body>
 </html>
