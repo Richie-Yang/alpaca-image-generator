@@ -109,7 +109,7 @@ function modifyAlpacaStyle(category, option) {
 function randomizeAlpaca(data) {
   if (imageWrapper.lastElementChild.tagName === 'CANVAS') return
 
-  const promise1 = new Promise(resolve => {
+  new Promise(resolve => {
     html2canvas(imageWrapper).then(canvas => {
       canvas.classList.add('alpaca-style-image', 'alpaca-style-screenshot')
       imageWrapper.appendChild(canvas)
