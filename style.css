@@ -36,18 +36,11 @@ body {
   left: 0;
 }
 
-.alpaca-change-div {
-  margin: 1.5vh 0 1.5vh;
-}
-
-/* #alpaca-categories-select, #alpaca-options-select {
-  width: 100%;
-} */
-
 footer a{
   border: .5px solid lightgray;
   width: 45%;
   padding: .5rem 1rem;
+  margin: 5px auto;
   border-radius: 5px;
   background-color: white;
   text-decoration: none;
@@ -61,5 +54,15 @@ footer a{
 
   .main-container {
     margin: 5vh auto 1vh;
+  }
+
+  footer a {
+    width: 85%;
+  }
+}
+
+@media (min-width: 992px) {
+  .main-container {
+    max-width: 992px;
   }
 }

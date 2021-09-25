@@ -1,6 +1,8 @@
+const categoriesInput = document.querySelector('#alpaca-categories-input')
 const categoriesSelect = document.querySelector('#alpaca-categories-select')
 const optionsSelect = document.querySelector('#alpaca-options-select')
-const changeDiv = document.querySelectorAll('.alpaca-change-div')
+const optionsInput = document.querySelector('#alpaca-options-input')
+// const changeDiv = document.querySelectorAll('.alpaca-change-div')
 
 const alpacaDict = {
   Hair: ['Default', 'Bang', 'Curls', 'Elegant', 'Fancy', 'Quiff', 'Short'],
@@ -26,7 +28,7 @@ function renderCategories() {
   let rawHTML = ''
   for (let dictItem in alpacaDict) {
     rawHTML += `
-      <option value="${dictItem}">${dictItem}</option>
+      <li><a class="dropdown-item" href="#" data-id="${dictItem}">${dictItem}</a></li>
     `
   }
   categoriesSelect.innerHTML = rawHTML
@@ -40,14 +42,14 @@ function renderOptions(id) {
     Object.keys(category).forEach(key => {
       category[key].map(value => {
         rawHTML += `
-          <option data-id="${id}" value="${key}${value}">${key}-${value}</option>
+          <li><a class="dropdown-item" href="#" data-category="${id}" data-option="${key}${value}">${key}-${value}</a></li>
         `
       })
     })
   } else {
     rawHTML = category.map(categoryItem => {
       return `
-      <option data-id="${id}" value="${categoryItem}">${categoryItem}</option>
+      <li><a class="dropdown-item" href="#" data-category="${id}" data-option="${categoryItem}">${categoryItem}</a></li>
       `
     }).join('')
   }
@@ -63,31 +65,33 @@ function modifyAlpacaStyle(category, option) {
 
 
 ///////////////Event Listener Group Starts Here///////////////
-categoriesSelect.addEventListener('click', function onCategoriesSelectClicked(event) {
-  if (event.target.tagName === 'OPTION') {
-    renderOptions(event.target.value)
+// categoriesSelect.addEventListener('click', function onCategoriesSelectClicked(event) {
+//   if (event.target.tagName === 'OPTION') {
+//     renderOptions(event.target.value)
+//   }
+// })
 
-    optionsSelect.addEventListener('click', function onOptionsSelectClicked(event) {
-      if (event.target.tagName === 'OPTION') {
-        const category = event.target.dataset.id.toLowerCase()
-        const option = event.target.value.toLowerCase()
-        modifyAlpacaStyle(category, option)
-      }
-    })
+// optionsSelect.addEventListener('click', function onOptionsSelectClicked(event) {
+//   if (event.target.tagName === 'OPTION') {
+//     const category = event.target.dataset.id.toLowerCase()
+//     const option = event.target.value.toLowerCase()
+//     modifyAlpacaStyle(category, option)
+//   }
+// })
+
+categoriesSelect.addEventListener('click', function onCategoriesSelectClicked(event) {
+  if (event.target.tagName === 'A') {
+    categoriesInput.value = event.target.dataset.id
+    renderOptions(event.target.dataset.id)
   }
 })
 
-categoriesSelect.addEventListener('touchstart', function onCategoriesSelectClicked(event) {
-  if (event.target.tagName === 'OPTION') {
-    renderOptions(event.target.value)
-
-    optionsSelect.addEventListener('touchstart', function onOptionsSelectClicked(event) {
-      if (event.target.tagName === 'OPTION') {
-        const category = event.target.dataset.id.toLowerCase()
-        const option = event.target.value.toLowerCase()
-        modifyAlpacaStyle(category, option)
-      }
-    })
+optionsSelect.addEventListener('click', function onOptionsSelectClicked(event) {
+  if (event.target.tagName === 'A') {
+    optionsInput.value = event.target.dataset.option
+    const category = event.target.dataset.category.toLowerCase()
+    const option = event.target.dataset.option.toLowerCase()
+    modifyAlpacaStyle(category, option)
   }
 })
 ///////////////Event Listener Group Ends Here///////////////
@@ -97,29 +101,29 @@ renderCategories()
 renderOptions('Hair')
 
 
-setInterval(function () {
-  // console.log(window.innerWidth)
-  // console.log(changeDiv)
-  switch (true) {
-    case (window.innerWidth < 768):
-      changeDiv.forEach(divItem => {
-        divItem.lastElementChild.size = '4'
-      })
-      break
-    case (window.innerWidth < 992):
-      changeDiv.forEach(divItem => {
-        divItem.lastElementChild.size = '5'
-      })
-      break
-    case (window.innerWidth < 1200):
-      changeDiv.forEach(divItem => {
-        divItem.lastElementChild.size = '7'
-      })
-      break
-    case (window.innerWidth < 1400):
-      changeDiv.forEach(divItem => {
-        divItem.lastElementChild.size = '9'
-      })
-      break
-  }
-}, 100)
+// setInterval(function () {
+//   // console.log(window.innerWidth)
+//   // console.log(changeDiv)
+//   switch (true) {
+//     case (window.innerWidth < 768):
+//       changeDiv.forEach(divItem => {
+//         divItem.lastElementChild.size = '4'
+//       })
+//       break
+//     case (window.innerWidth < 992):
+//       changeDiv.forEach(divItem => {
+//         divItem.lastElementChild.size = '5'
+//       })
+//       break
+//     case (window.innerWidth < 1200):
+//       changeDiv.forEach(divItem => {
+//         divItem.lastElementChild.size = '7'
+//       })
+//       break
+//     case (window.innerWidth < 1400):
+//       changeDiv.forEach(divItem => {
+//         divItem.lastElementChild.size = '9'
+//       })
+//       break
+//   }
+// }, 100)
