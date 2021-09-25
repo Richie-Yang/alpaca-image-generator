@@ -69,6 +69,12 @@ categoriesSelect.addEventListener('click', function onCategoriesSelectClicked(ev
   }
 })
 
+categoriesSelect.addEventListener('touch', function onCategoriesSelectClicked(event) {
+  if (event.target.tagName === 'OPTION') {
+    renderOptions(event.target.value)
+  }
+})
+
 optionsSelect.addEventListener('click', function onOptionsSelectClicked(event) {
   if (event.target.tagName === 'OPTION') {
     const category = event.target.dataset.id.toLowerCase()
