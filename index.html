@@ -10,40 +10,37 @@
   <title>Alpaca Image Generator</title>
 </head>
 <body>
-  <div class="main-container container text-center">
+  <div class="main-container container">
     <header>
       <h1>ALPACA GENERATOR</h1>
     </header>
 
-    <main class="d-flex flex-column justify-content-around">
-      <section class="image-wrapper">
-        <div class="image-empty-holder"></div>
-        <img id="alpaca-backgrounds" src="./external/alpaca-generator-assets/alpaca/backgrounds/blue50.png" alt="">
-        <img id="alpaca-ears" src="./external/alpaca-generator-assets/alpaca/ears/default.png" alt="">
-        <img id="alpaca-neck" src="./external/alpaca-generator-assets/alpaca/neck/default.png" alt="">
-        <img id="alpaca-nose" src="./external/alpaca-generator-assets/alpaca/nose.png" alt="">
-        <img id="alpaca-mouth" src="./external/alpaca-generator-assets/alpaca/mouth/default.png" alt="">
-        <img id="alpaca-leg" src="./external/alpaca-generator-assets/alpaca/leg/default.png" alt="">
-        <img id="alpaca-hair" src="./external/alpaca-generator-assets/alpaca/hair/default.png" alt="">
-        <img id="alpaca-accessories" src="./external/alpaca-generator-assets/alpaca/accessories/headphone.png" alt="">
-        <img id="alpaca-eyes" src="./external/alpaca-generator-assets/alpaca/eyes/default.png" alt="">
+    <main class="row justify-content-between text-center my-3">
+      <section class="col-12 col-md-7 col-lg-6 image-wrapper">
+        <img id="alpaca-backgrounds" class="w-100" src="./external/alpaca-generator-assets/alpaca/backgrounds/blue50.png" alt="backgrounds">
+        <img id="alpaca-ears"  class="alpaca-style-image" src="./external/alpaca-generator-assets/alpaca/ears/default.png" alt="ears">
+        <img id="alpaca-neck" class="alpaca-style-image" src="./external/alpaca-generator-assets/alpaca/neck/default.png" alt="neck">
+        <img id="alpaca-nose" class="alpaca-style-image" src="./external/alpaca-generator-assets/alpaca/nose.png" alt="nose">
+        <img id="alpaca-mouth" class="alpaca-style-image" src="./external/alpaca-generator-assets/alpaca/mouth/default.png" alt="mouth">
+        <img id="alpaca-leg" class="alpaca-style-image" src="./external/alpaca-generator-assets/alpaca/leg/default.png" alt="leg">
+        <img id="alpaca-hair" class="alpaca-style-image" src="./external/alpaca-generator-assets/alpaca/hair/default.png" alt="hair">
+        <img id="alpaca-accessories" class="alpaca-style-image" src="./external/alpaca-generator-assets/alpaca/accessories/headphone.png" alt="accessories">
+        <img id="alpaca-eyes" class="alpaca-style-image" src="./external/alpaca-generator-assets/alpaca/eyes/default.png" alt="eyes">
       </section>
 
-      <section class="setting-wrapper">
+      <section class="col-12 col-md-5 col-lg-6 d-flex flex-column justify-content-around">
         <div class="alpaca-change-div">
           <h5>ACCESSORIZE THE ALPACA'S</h5>
-          <select id="alpaca-categories-nav" class="form-select alpaca-change-nav" size="5" aria-label="size 5 select example">
+          <select id="alpaca-categories-select" class="form-select" size="5" aria-label="size 5 select example">
           </select>
         </div>
 
         <div class="alpaca-change-div">
           <h5>STYLE</h5>
-          <select id="alpaca-options-nav" class="form-select alpaca-change-nav" size="5" aria-label="size 5 select example">
+          <select id="alpaca-options-select" class="form-select" size="5" aria-label="size 5 select example">
           </select>
         </div>
       </section>
-
-
     </main>
 
     <footer class="d-flex justify-content-between">

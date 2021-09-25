@@ -1,13 +1,6 @@
-const background = document.querySelector('#alpaca-background')
-const ears = document.querySelector('#alpaca-ear')
-const hair = document.querySelector('#alpaca-hair')
-const eyes = document.querySelector('#alpaca-eyes')
-const nose = document.querySelector('#alpaca-nose')
-const mouth = document.querySelector('#alpaca-mouth')
-const leg = document.querySelector('#alpaca-leg')
-const accessories = document.querySelector('#alpaca-accessories')
-const categoriesNav = document.querySelector('#alpaca-categories-nav')
-const optionsNav = document.querySelector('#alpaca-options-nav')
+const categoriesSelect = document.querySelector('#alpaca-categories-select')
+const optionsSelect = document.querySelector('#alpaca-options-select')
+const changeDiv = document.querySelectorAll('.alpaca-change-div')
 
 const alpacaDict = {
   Hair: ['Default', 'Bang', 'Curls', 'Elegant', 'Fancy', 'Quiff', 'Short'],
@@ -36,7 +29,7 @@ function renderCategories() {
       <option value="${dictItem}">${dictItem}</option>
     `
   }
-  categoriesNav.innerHTML = rawHTML
+  categoriesSelect.innerHTML = rawHTML
 }
 
 function renderOptions(id) {
@@ -45,7 +38,11 @@ function renderOptions(id) {
   
   if (category['Blue']) {
     Object.keys(category).forEach(key => {
-      category[key].map(test => rawHTML += `<option data-id="${id}" value="${key}${test}">${key}-${test}</option>`)
+      category[key].map(value => {
+        rawHTML += `
+          <option data-id="${id}" value="${key}${value}">${key}-${value}</option>
+        `
+      })
     })
   } else {
     rawHTML = category.map(categoryItem => {
@@ -55,11 +52,10 @@ function renderOptions(id) {
     }).join('')
   }
 
-  optionsNav.innerHTML = rawHTML
+  optionsSelect.innerHTML = rawHTML
 }
 
 function modifyAlpacaStyle(category, option) {
-  console.log(category)
   const styleTarget = document.querySelector(`#alpaca-${category}`)
   styleTarget.src = `./external/alpaca-generator-assets/alpaca/${category}/${option}.png`
 }
@@ -67,13 +63,13 @@ function modifyAlpacaStyle(category, option) {
 
 
 ///////////////Event Listener Group Starts Here///////////////
-categoriesNav.addEventListener('click', function onOptionsNavClicked(event) {
+categoriesSelect.addEventListener('click', function onOptionsSelectClicked(event) {
   if (event.target.tagName === 'OPTION') {
     renderOptions(event.target.value)
   }
 })
 
-optionsNav.addEventListener('click', function onOptionsNavClicked(event) {
+optionsSelect.addEventListener('click', function onOptionsSelectClicked(event) {
   if (event.target.tagName === 'OPTION') {
     const category = event.target.dataset.id.toLowerCase()
     const option = event.target.value.toLowerCase()
@@ -86,3 +82,29 @@ optionsNav.addEventListener('click', function onOptionsNavClicked(event) {
 renderCategories()
 renderOptions('Hair')
 
+setInterval(function () {
+  // console.log(window.innerWidth)
+  // console.log(changeDiv)
+  switch (true) {
+    case (window.innerWidth < 768):
+      changeDiv.forEach(divItem => {
+        divItem.lastElementChild.size = '4'
+      })
+      break
+    case (window.innerWidth < 992):
+      changeDiv.forEach(divItem => {
+        divItem.lastElementChild.size = '5'
+      })
+      break
+    case (window.innerWidth < 1200):
+      changeDiv.forEach(divItem => {
+        divItem.lastElementChild.size = '7'
+      })
+      break
+    case (window.innerWidth < 1400):
+      changeDiv.forEach(divItem => {
+        divItem.lastElementChild.size = '9'
+      })
+      break
+  }
+}, 100)
