@@ -16,9 +16,8 @@ body {
 }
 
 .main-container {
-  margin: 1.5vh auto 1vh;
+  margin: 1.5vh auto 0;
   border-radius: 8px;
-  box-shadow: -3px 8px 2px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
 .image-wrapper {
@@ -34,6 +33,11 @@ body {
   padding: inherit;
   top: 0;
   left: 0;
+}
+
+.alpaca-style-screenshot {
+  opacity: 1;
+  transition: opacity .5s;
 }
 
 .dropdown-toggle {
@@ -66,6 +70,13 @@ footer a:active {
   box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .main-container {
+    box-shadow: -3px 8px 2px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  }
+}
+
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   header {
@@ -81,6 +92,7 @@ footer a:active {
   }
 }
 
+/* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .main-container {
     max-width: 992px;

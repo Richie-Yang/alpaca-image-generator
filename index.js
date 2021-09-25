@@ -89,14 +89,14 @@ function modifyAlpacaStyle(category, option) {
     const background2 = document.querySelector(`#alpaca-backgrounds-2`)
 
     background2.style.transition = 'unset'
-    background2.style.opacity = '1'
+    background2.style.opacity = 1
     background2.src = background1.src
 
     const bgSwitchingTimer = setInterval(() => {
       if (background2.style.opacity === '1') {
         background1.src = `./external/alpaca-generator-assets/alpaca/${category}/${option}.png`
         background2.style.transition = 'opacity 1s'
-        background2.style.opacity = '0'
+        background2.style.opacity = 0
         clearInterval(bgSwitchingTimer)
       }
     }, 50);
@@ -107,36 +107,60 @@ function modifyAlpacaStyle(category, option) {
 }
 
 function randomizeAlpaca(data) {
-  for (let category in data) {
-    const targetName = `alpaca-${category.toLowerCase()}`
-    
-    if (category !== 'Backgrounds') {
-      const targetObject = document.querySelector(`#${targetName}`)
-      const randomIndex = Math.floor(Math.random() * alpacaDict[category].length)
-      const option = alpacaDict[category][randomIndex].toLowerCase()
-      targetObject.src = `
+  if (imageWrapper.lastElementChild.tagName === 'CANVAS') return
+
+  const promise1 = new Promise(resolve => {
+    html2canvas(imageWrapper).then(canvas => {
+      canvas.classList.add('alpaca-style-image', 'alpaca-style-screenshot')
+      imageWrapper.appendChild(canvas)
+      resolve(canvas)
+    })
+  }).then(canvas => {
+    for (let category in data) {
+      const targetName = `alpaca-${category.toLowerCase()}`
+
+      if (category !== 'Backgrounds') {
+        const targetObject = document.querySelector(`#${targetName}`)
+        const randomIndex = Math.floor(Math.random() * alpacaDict[category].length)
+        const option = alpacaDict[category][randomIndex].toLowerCase()
+        targetObject.src = `
         ./external/alpaca-generator-assets/alpaca/${category.toLowerCase()}/${option}.png
       `
-    } else {
-      const bgColorNameArray = Object.keys(alpacaDict[category])
-      const randomColorIndex = Math.floor(Math.random() * bgColorNameArray.length)
-      const randomColorName = bgColorNameArray[randomColorIndex]
-      
-      const bgColorNumberArray = alpacaDict[category][randomColorName]
-      const randomNumberIndex = Math.floor(Math.random() * bgColorNumberArray.length)
-      const randomNumberValue = bgColorNumberArray[randomNumberIndex]
+      } else {
+        const bgColorNameArray = Object.keys(alpacaDict[category])
+        const randomColorIndex = Math.floor(Math.random() * bgColorNameArray.length)
+        const randomColorName = bgColorNameArray[randomColorIndex]
 
-      const background1 = document.querySelector(`#${targetName}-1`)
-      const background2 = document.querySelector(`#${targetName}-2`)
-      
-      background1.src = `
+        const bgColorNumberArray = alpacaDict[category][randomColorName]
+        const randomNumberIndex = Math.floor(Math.random() * bgColorNumberArray.length)
+        const randomNumberValue = bgColorNumberArray[randomNumberIndex]
+
+        const background1 = document.querySelector(`#${targetName}-1`)
+        const background2 = document.querySelector(`#${targetName}-2`)
+
+        background1.src = `
         ./external/alpaca-generator-assets/alpaca/${category.toLowerCase()}/${randomColorName.toLowerCase()}${randomNumberValue}.png
       `
-      background2.src = `
+        background2.src = `
         ./external/alpaca-generator-assets/alpaca/${category.toLowerCase()}/${randomColorName.toLowerCase()}${randomNumberValue}.png
       `
+      }
     }
-  }
+
+    const imageSwitchingTimer = setInterval(() => {
+      if (canvas.style.opacity === 0) {
+        clearInterval(imageSwitchingTimer)
+      } else {
+        canvas.style.opacity -= .1
+      }
+    }, 20)
+
+    setTimeout(() => {
+      if (imageWrapper.lastElementChild.tagName === 'CANVAS') {
+        imageWrapper.lastElementChild.remove()
+      }
+    }, 250);
+  })
 }
 //////////////////Function Group Ends Here//////////////////
 
@@ -186,14 +210,11 @@ footerSection.addEventListener('click', function onFooterSectionClicked(event) {
       break
     case 'download':
       html2canvas(imageWrapper).then(canvas => {
-        const tempPaddingValue = imageWrapper.style.padding
-        imageWrapper.style.padding = 0
         const base64image = canvas.toDataURL("image/png")
         const download = document.createElement('a')
         download.href = base64image
         download.download = 'alpaca.png'
         download.click()
-        imageWrapper.style.padding = tempPaddingValue
       })
       break
   }
