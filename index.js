@@ -14,7 +14,7 @@ const alpacaDict = {
     Blue: [50, 60, 70],
     Darkblue: [30, 50, 70],
     Green: [50, 60, 70],
-    Grey: [40, 60, 80],
+    Grey: [40, 70, 80],
     Red: [50, 60, 70],
     Yellow: [50, 60, 70]
   }
