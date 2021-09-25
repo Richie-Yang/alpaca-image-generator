@@ -36,12 +36,12 @@ body {
   left: 0;
 }
 
-/* #alpaca-backgrounds-2 {
-  transition: opacity .5s;
-} */
-
 .dropdown-toggle {
   width: 95%;
+}
+
+.dropdown-menu {
+  opacity: .9;
 }
 
 footer a{

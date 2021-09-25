@@ -82,6 +82,13 @@ function modifyAlpacaStyle(category, option) {
     targetObject.src = `./external/alpaca-generator-assets/alpaca/${category}/${option}.png`
   }
 }
+
+function randomizeAlpaca() {
+  for (let category in alpacaDict) {
+    const randomIndex = Math.floor(Math.random() * category.length) + 1
+    
+  }
+}
 //////////////////Function Group Ends Here//////////////////
 
 
@@ -90,6 +97,7 @@ categoriesSelect.addEventListener('click', function onCategoriesSelectClicked(ev
   if (event.target.tagName === 'A') {
     categoriesLabel.innerHTML = event.target.dataset.id
     renderOptions(event.target.dataset.id)
+    optionsLabel.innerHTML = 'Then, Select the Option'
   }
 })
 
