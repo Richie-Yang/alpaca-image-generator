@@ -91,9 +91,9 @@ function randomizeAlpaca(data) {
     if (category !== 'Backgrounds') {
       const targetObject = document.querySelector(`#${targetName}`)
       const randomIndex = Math.floor(Math.random() * alpacaDict[category].length)
-      const option = alpacaDict[category][randomIndex]
+      const option = alpacaDict[category][randomIndex].toLowerCase()
       targetObject.src = `
-        ./external/alpaca-generator-assets/alpaca/${category}/${option}.png
+        ./external/alpaca-generator-assets/alpaca/${category.toLowerCase()}/${option}.png
       `
     } else {
       const bgColorNameArray = Object.keys(alpacaDict[category])
@@ -108,10 +108,10 @@ function randomizeAlpaca(data) {
       const background2 = document.querySelector(`#${targetName}-2`)
       
       background1.src = `
-        ./external/alpaca-generator-assets/alpaca/${category}/${randomColorName}${randomNumberValue}.png
+        ./external/alpaca-generator-assets/alpaca/${category.toLowerCase()}/${randomColorName.toLowerCase()}${randomNumberValue}.png
       `
       background2.src = `
-        ./external/alpaca-generator-assets/alpaca/${category}/${randomColorName}${randomNumberValue}.png
+        ./external/alpaca-generator-assets/alpaca/${category.toLowerCase()}/${randomColorName.toLowerCase()}${randomNumberValue}.png
       `
     }
   }
