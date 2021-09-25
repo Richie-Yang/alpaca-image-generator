@@ -70,7 +70,7 @@ function modifyAlpacaStyle(category, option) {
     setTimeout(function() {
       background1.src = `./external/alpaca-generator-assets/alpaca/${category}/${option}.png`
       background2.style.opacity = 0
-    }, 250)
+    }, 500)
   } else {
     targetObject.src = `./external/alpaca-generator-assets/alpaca/${category}/${option}.png`
   }
