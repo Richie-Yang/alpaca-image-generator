@@ -67,6 +67,7 @@ footer a:hover {
 }
 
 footer a:active {
+  background-color: white;
   box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -85,6 +86,10 @@ footer a:active {
 
   .main-container {
     margin: 5vh auto 1vh;
+  }
+
+  .form-select {
+    box-shadow: -3px 8px 2px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   }
 
   footer a {
