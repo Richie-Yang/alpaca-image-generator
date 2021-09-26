@@ -1,10 +1,8 @@
 # Alpaca Image Generator
 
-
 <p align="center">
-  <img src="">
+  <img src="https://github.com/Richie-Yang/alpaca-image-generator/blob/main/images/alpaca-image-generator.gif?raw=true">
 </p>
-
 
 ## Features
 
@@ -27,12 +25,17 @@
 
 ## Other Screenshots
 
-### index.html main view
+### index.html main view from mobile
 
 <p align="center">
-  <img src="">
+  <img src="https://github.com/Richie-Yang/alpaca-image-generator/blob/main/images/1.%20mobile.jpg?raw=true">
 </p>
 
+### index.html main view from tablet
+
+<p align="center">
+  <img src="https://github.com/Richie-Yang/alpaca-image-generator/blob/main/images/2.%20tablet.jpg?raw=true">
+</p>
 
 ## Credits For Inspiration
 - the project, basic styling, and function requeirements are all from [DevProjects](https://www.codementor.io/projects/web/alpaca-image-generator-website-ce2oc0eus8)
